@@ -41,7 +41,7 @@ And we’ll use the wc -l command to count the number of lines to give us how ma
 
  ![data_exploration_cleaning2.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/data_exploration_cleaning2.jpg?raw=true)
 
-4. Let’s run an **awk** command on each column index using the comma delimiter and check if there are empty or ‘NULL’ or ‘#N/A’ values. We see that column 7 which represents *Rate* has missing or invalid values.
+4. Let’s run an **awk** command on each column index using the comma delimiter and check if there are empty or 'NULL' or '#N/A' values. We see that column 7 which represents *Rate* has missing or invalid values.
    
 
         awk -F ',' '$1 == "NULL" || $1 == "#N/A" || $1 == ""' $output_file
@@ -54,7 +54,7 @@ And we’ll use the wc -l command to count the number of lines to give us how ma
 
 ![data_exploration_cleaning3.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/data_exploration_cleaning3.jpg?raw=true)
 
-We can use the awk command again for column 7, specifically check if there are NULL, #N/A or empty values, and count the number of lines with wc -l. There are **762** Rate values out of **8146** that are missing which should not pose a problem for any further analysis on the Rate column in Linux.
+We can use the awk command again for column 7, specifically check if there are 'NULL', '#N/A' or empty values, and count the number of lines with wc -l. There are **762** Rate values out of **8146** that are missing which should not pose a problem for any further analysis on the Rate column in Linux.
 
         awk -F ',' '$7 == "NULL"' $output_file | wc -l
         awk -F ',' '$7 == "#N/A"' $output_file | wc -l
@@ -184,5 +184,30 @@ Let’s break this down into steps using the awk command.
 ![count_applicants_homeimprovement4.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/count_applicants_homeimprovement4.jpg?raw=true)
 
 
+**What is the average age of those borrowing more than 20% of their income and making less than $15,000?**
 
+We'll break this down into steps using the awk command.
 
+1. The borrowing % of income is in the *Percent_income* column which is the 9th column. Let’s test an awk command separating the fields by ‘,’ and row number > 1 to ignore the header row and show the 1st 10 rows of Percent_income > 0.2.
+
+        awk -F ',' 'NR > 1 && $9 > 0.2 {print $9}' $output_file | head
+
+![average_age_borrowing_percent_income1.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/average_age_borrowing_percent_income1.jpg?raw=true)
+
+2. The *Income* column is the 3rd column. Let’s test an awk command separating the fields by ‘,’ and row number > 1 to ignore the header row and show the 1st 10 rows of Income < 15000.
+
+        awk -F ',' 'NR > 1 && $3 < 15000 {print $3}' $output_file | head
+
+![average_age_borrowing_percent_income2.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/average_age_borrowing_percent_income2.jpg?raw=true)
+
+3. The *Age* column is the 2nd column. Let’s combine the 2 awk commands to show the 1st 10 rows of age column filtered out by Percent_income > 0.2 and Income < 15000.
+
+        awk -F ',' 'NR > 1 && $9 > 0.2 && $3 < 15000 {print $2}' $output_file | head
+
+![average_age_borrowing_percent_income3.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/average_age_borrowing_percent_income3.jpg?raw=true)
+
+4. The final step is to combine the filter conditions from #1 and #2, use a count variable to count rows for filtered data, and aggregate the age column values we explored in #3 using the sum variable. If rows are returned with count > 0, the average is calculated as sum/count and we print the result by rounding to 0 using formatting of %.0f\n. The average age of those borrowing more than 20% of their income and making less than $15,000 is **26**.
+    
+        awk -F ',' 'NR > 1 && $9 > 0.2 && $3 < 15000 {count++; sum+=$2} END {if (count > 0) printf "Average age: %.0f\n", sum/count; else print "No matching records"}' $output_file
+
+![average_age_borrowing_percent_income4.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/average_age_borrowing_percent_income4.jpg?raw=true)
