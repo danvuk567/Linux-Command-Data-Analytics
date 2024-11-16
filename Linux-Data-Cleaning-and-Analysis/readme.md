@@ -114,7 +114,7 @@ Columns 8 to 11 appear to have no missing or invalid values.
 
 In this section, we will ask some questions and do some analysis using Linux bash commands.
 
-**What is the income of the loan applicant with ID #18983?**
+### **What is the income of the loan applicant with ID #18983?**
 
 1. Let’s show the applicant ID which is the 1st column of the file using the **cut** command with comma delimiter and first column and use the head command to show the 1st 10 rows.
 
@@ -139,7 +139,7 @@ In this section, we will ask some questions and do some analysis using Linux bas
 ![income_applicant_ID4.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/income_applicant_ID4.jpg?raw=true)   
 
 
-**Which applicant ID had the highest loan rate?**
+### **Which applicant ID had the highest loan rate?**
 
 Let’s break this down into steps using the awk command.
 
@@ -156,7 +156,7 @@ Let’s break this down into steps using the awk command.
 ![highest_loan_rate2.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/highest_loan_rate2.jpg?raw=true)  
 
 
-**How many applicants that owned a home or had a mortgage were borrowing for home improvement?**
+### **How many applicants that owned a home or had a mortgage were borrowing for home improvement?**
 
 1. The “Home” column is the 4th column. Let’s test an awk command separating the fields by ‘,’ and row number > 1 to ignore the header row and show the 1st 10 rows of applicant ID with **Home** = "OWN" or "MORTGAGE".
 
@@ -184,7 +184,7 @@ Let’s break this down into steps using the awk command.
 ![count_applicants_homeimprovement4.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/count_applicants_homeimprovement4.jpg?raw=true)
 
 
-**What is the average age of those borrowing more than 20% of their income and making less than $15,000?**
+### **What is the average age of those borrowing more than 20% of their income and making less than $15,000?**
 
 We'll break this down into steps using the awk command.
 
@@ -213,7 +213,7 @@ We'll break this down into steps using the awk command.
 ![average_age_borrowing_percent_income4.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/average_age_borrowing_percent_income4.jpg?raw=true)
 
 
-**Which applicants are seeking loan approval status, have defaulted on their loan previously, looking to do debt consolidation, and borrowing more than 50% of their income?**
+### **Which applicants are seeking loan approval status, have defaulted on their loan previously, looking to do debt consolidation, and borrowing more than 50% of their income?**
 
 Let’s break this down into steps using the awk command.
 
