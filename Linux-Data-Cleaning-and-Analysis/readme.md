@@ -4,7 +4,7 @@
 
 Let's do some data cleaning and exploration using Linux Bash commands on the data source text file in the steps outlined below. I used an Oracle cloud virtual terminal running a Linux Shell for this excercise.
 
-1.	Let’s use the sed command to remove the carriage returns from the file and output to a new file that we can modify.
+1. Let’s use the sed command to remove the carriage returns from the file and output to a new file that we can modify.
 
         input_file="Loan_prediction_mini_dataset.csv"
         output_file= “Loan_prediction_mini_dataset_cleaned.csv”
@@ -21,7 +21,7 @@ Let’s use the sed command and remove the quotes around each field in the file.
 
 ![clean_file.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/clean_file.jpg?raw=true)
 
-2.	Let’s explore what the 1st 10 rows of data looks like using the cat and head commands on the file.
+2. Let’s explore what the 1st 10 rows of data looks like using the cat and head commands on the file.
 
         cat $output_file | head
 
@@ -35,13 +35,13 @@ And we’ll use the wc -l command to count the number of lines to give us how ma
 
 ![data_exploration_cleaning1.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/data_exploration_cleaning1.jpg?raw=true)
 
-3.	Check for weird characters using grep -P with regular expression that matches any character not in the printable ASCII range including tab, carriage return, and newline. There are no characters that are not ASCII.
+3. Check for weird characters using grep -P with regular expression that matches any character not in the printable ASCII range including tab, carriage return, and newline. There are no characters that are not ASCII.
 
         grep -P '[^\x20-\x7E\t\r\n]' $output_file
 
  ![data_exploration_cleaning2.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/data_exploration_cleaning2.jpg?raw=true)
 
- 4.	Let’s run an awk command on each column index using the comma delimiter and check if there are empty or ‘NULL’ or ‘#N/A’ values. We see that column 7 which represents “Rate” has missing or invalid values.
+4. Let’s run an awk command on each column index using the comma delimiter and check if there are empty or ‘NULL’ or ‘#N/A’ values. We see that column 7 which represents “Rate” has missing or invalid values.
    
 
         awk -F ',' '$1 == "NULL" || $1 == "#N/A" || $1 == ""' $output_file
@@ -71,8 +71,8 @@ Columns 8 to 11 appear to have no missing or invalid values.
 
 ![data_exploration_cleaning5.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/data_exploration_cleaning5.jpg?raw=true)
 
-5.	Check to make sure each column has the expected data type using the awk command with comma delimiter and row > 1 to ignore the 1st header row.
+5. Check to make sure each column has the expected data type using the awk command with comma delimiter and row > 1 to ignore the 1st header row.
 
-        The 1st, 2nd, 3rd columns should contain a number. No rows show non-number.
+   The 1st, 2nd, 3rd columns should contain a number. No rows show non-number.
 
         awk -F ',' 'NR > 1 && ($1 !~ /^[0-9]+$/ || $2 !~ /^[0-9]+$/ || $3 !~ /^[0-9]+$/) {print $0}' $output_file | wc -l
