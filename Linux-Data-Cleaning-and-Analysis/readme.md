@@ -1,8 +1,8 @@
 # Linux Command Data Analytics
 
-## Exploratory Data Analysis and Data Cleaning
+## Data Cleaning
 
-Let's do some data cleaning and exploration using Linux Bash commands on the data source text file in the steps outlined below. I used an Oracle cloud virtual terminal running a Linux Shell for this excercise.
+Let's do some data cleaning and exploration using Linux bash commands on the data source text file in the steps outlined below. I used an Oracle cloud virtual terminal running a Linux Shell for this excercise.
 
 1. Let’s use the sed command to remove the carriage returns from the file and output to a new file that we can modify.
 
@@ -102,3 +102,25 @@ Columns 8 to 11 appear to have no missing or invalid values.
         awk -F ',' 'NR > 1 && ($11 !~ /^[0-9]+$/) {print $0}' $output_file | wc -l
 
 ![data_exploration_cleaning6.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/data_exploration_cleaning6.jpg?raw=true)   
+
+6. Let’s check if there are duplicates in the file using the sort and uniq command. There are none.
+
+        sort $output_file | uniq -d
+
+![data_exploration_cleaning7.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/data_exploration_cleaning7.jpg?raw=true)
+
+
+## Data Analysis
+
+In this section, we will ask some questions and do some analysis using Linux bash commands.
+
+**What is the income of the loan applicant with ID #18983?**
+
+1. Let’s show the applicant ID which is the 1st column of the file using the cut with comma delimiter and first column and use the head command to show the 1st 10 rows.
+
+   cut -d ',' -f 1 Loan_prediction_mini_dataset.csv | head
+
+
+
+
+   
