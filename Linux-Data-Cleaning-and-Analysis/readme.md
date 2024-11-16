@@ -2,7 +2,7 @@
 
 ## Exploratory Data Analysis and Data Cleaning
 
-Let's do some data cleaning and exploration on the data source text file in the steps outlined below.
+Let's do some data cleaning and exploration using Linux Bash commands on the data source text file in the steps outlined below. I used an Oracle cloud virtual terminal running a Linux Shell for this excercise.
 
 1.	Let’s use the sed command to remove the carriage returns from the file and output to a new file that we can modify.
 
