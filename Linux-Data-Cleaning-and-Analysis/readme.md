@@ -23,6 +23,6 @@ Let’s use the sed command and remove the quotes around each field in the file.
 
 2.	Let’s explore what the 1st 10 rows of data looks like using the cat and head commands on the file.
 
-                cat $output_file | head
+        cat $output_file | head
 
         
