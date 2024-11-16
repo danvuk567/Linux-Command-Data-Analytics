@@ -132,4 +132,10 @@ In this section, we will ask some questions and do some analysis using Linux bas
 
         cut -d ',' -f 1 $output_file | grep -n 18983 | cut -d ':' -f 1
 
-![income_applicant_ID3.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/income_applicant_ID3.jpg?raw=true)   
+![income_applicant_ID3.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/income_applicant_ID3.jpg?raw=true)
+
+4. In this last step, we’ll store the command in #3 in the variable line_num. We’ll then use the sed -n command to print the line stored in the line_num variable and apply the cut command with comma delimiter and 3rd column. We’ll store that in the income variable and then print the value which is **$120,000**.
+
+![income_applicant_ID4.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/income_applicant_ID4.jpg?raw=true)   
+
+
