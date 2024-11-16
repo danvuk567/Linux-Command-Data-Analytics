@@ -156,4 +156,33 @@ Let’s break this down into steps using the awk command.
 ![highest_loan_rate2.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/highest_loan_rate2.jpg?raw=true)  
 
 
+**How many applicants that owned a home or had a mortgage were borrowing for home improvement?**
+
+1. The “Home” column is the 4th column. Let’s test an awk command separating the fields by ‘,’ and row number > 1 to ignore the header row and show the 1st 10 rows of applicant ID with **Home** = "OWN" or "MORTGAGE".
+
+        awk -F ',' 'NR > 1 && ($4 == "OWN" || $4 == "MORTGAGE")  {print $1}' $output_file | head
+
+![count_applicants_homeimprovement1.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/count_applicants_homeimprovement1.jpg?raw=true)
+
+2. The *Intent* column is the 5th column. Let’s test an awk command separating the fields by ‘,’ and row number > 1 to ignore the header row and show the 1st 10 rows of applicant ID with Intent = "HOMEIMPROVEMENT".
+
+        awk -F ',' 'NR > 1 && $5 = " HOMEIMPROVEMENT " {print $1}' $output_file | head
+   
+![count_applicants_homeimprovement2.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/count_applicants_homeimprovement2.jpg?raw=true)
+
+3. Let’s combine the 2 awk commands to show the 1st 10 rows of applicant ID column filtered out by Home = "OWN" or "MORTGAGE" and Intent = "HOMEIMPROVEMENT".
+
+        awk -F ',' 'NR > 1 && ($4 == "OWN" || $4 == "MORTGAGE") && $5 == "HOMEIMPROVEMENT" {print $1}' $output_file | head 
+   
+![count_applicants_homeimprovement3.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/count_applicants_homeimprovement3.jpg?raw=true)
+
+
+4. The final step is to combine the filter conditions from #1 and #2 and use a count variable to count rows for filtered data. We print the number of applicants if rows are returned with count > 0. The number of applicants that owned a home or had a mortgage and were borrowing for home improvement is **539**.
+
+        awk -F ',' 'NR > 1 && ($4 == "OWN" || $4 == "MORTGAGE") && $5 == "HOMEIMPROVEMENT" {count++} END {if (count > 0) print "No. of applicants:", count; else print "None"}' $output_file
+
+![count_applicants_homeimprovement4.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/count_applicants_homeimprovement4.jpg?raw=true)
+
+
+
 
