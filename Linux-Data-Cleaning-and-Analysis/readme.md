@@ -213,7 +213,7 @@ We'll break this down into steps using the awk command.
 ![average_age_borrowing_percent_income4.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/average_age_borrowing_percent_income4.jpg?raw=true)
 
 
-**Which applicants are seeking loan approval status that have defaulted on their loan previously, looking to do debt consolidation and borrowing more than 50% of their income?**
+**Which applicants are seeking loan approval status, have defaulted on their loan previously, looking to do debt consolidation, and borrowing more than 50% of their income?**
 
 Let’s break this down into steps using the awk command.
 
@@ -235,6 +235,9 @@ Let’s break this down into steps using the awk command.
    
 ![applicants_default_borrowing_percent_income_debt_cons3.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/applicants_default_borrowing_percent_income_debt_cons3.jpg?raw=true)
 
+4. The final step is to combine the filter conditions from #1, #2, and #3 and show the 1st 10 rows of ID column filtered out by Default = 'Y', Intent = 'DEBTCONSOLIDATION', and Percent_income > 0.5. We have **3** applicants that are seeking loan approval status, have defaulted on their loan previously, looking to do debt consolidation, and borrowing more than 50% of their income: **18204 18327 28787**.
 
-   
-   
+        awk -F ',' 'NR > 1 && $10 == "Y" && $5 == "DEBTCONSOLIDATION" && $9 > 0.5 {print $1}' $output_file | head
+
+![applicants_default_borrowing_percent_income_debt_cons4.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/applicants_default_borrowing_percent_income_debt_cons4.jpg?raw=true)
+
