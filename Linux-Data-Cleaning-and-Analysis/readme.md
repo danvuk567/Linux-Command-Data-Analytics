@@ -21,3 +21,8 @@ Let’s use the sed command and remove the quotes around each field in the file.
 
 ![clean_file.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/clean_file.jpg?raw=true)
 
+2.	Let’s explore what the 1st 10 rows of data looks like using the cat and head commands on the file.
+
+                cat $output_file | head
+
+        
