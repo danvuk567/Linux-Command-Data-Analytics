@@ -14,7 +14,7 @@ This is an excercise in demonstrating how you can do some basic data exploration
 
 ## **Table of Contents** ##
 
-- [Python Exploratory Data Analysis](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/Python-Supply-Chain-Data-Exploration/readme.md)
+- [Linux Data Cleaning and Analysis](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/Linux-Data-Cleaning-and-Analysis/readme.md)
   
 ## **Data Sources Used** ##
 
