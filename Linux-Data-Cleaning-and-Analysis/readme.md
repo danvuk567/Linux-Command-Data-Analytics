@@ -25,11 +25,11 @@ Let’s use the sed command and remove the quotes around each field in the file.
 
         cat $output_file | head
 
-        To find the number of columns in the file, we can use head -n 1 to get the 1st row, use the tr command to replace commas by newline characters so that columns go to new lines and then use the wc -l command to count the number of lines for those columns. There are 11 columns.
+   To find the number of columns in the file, we can use head -n 1 to get the 1st row, use the tr command to replace commas by newline characters so that columns go to new lines and then use the wc -l command to count the number of lines for those columns. There are 11 columns.
 
         head -n 1 $output_file | tr ',' '\n' | wc -l
 
-        And we’ll use the wc -l command to count the number of lines to give us how many rows we have in the file. There are 8146 lines in the file.
+    And we’ll use the wc -l command to count the number of lines to give us how many rows we have in the file. There are 8146 lines in the file.
 
         wc -l $output_file | head
 
