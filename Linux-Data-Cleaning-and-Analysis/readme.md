@@ -147,7 +147,7 @@ Let’s break this down into steps using the awk command.
 
         awk -F ',' 'NR > 1 {print $7}' $output_file | head
 
-![highest_loan_rate1.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/highest_loan_rate1.jpg.jpg?raw=true)  
+![highest_loan_rate1.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/highest_loan_rate1.jpg?raw=true)  
 
 2. We can use max variable to loop through the 7th column and track the last maximum value of Rate and show that the maximum Rate is **21.74%** and the applicant ID is **15744**.
 
