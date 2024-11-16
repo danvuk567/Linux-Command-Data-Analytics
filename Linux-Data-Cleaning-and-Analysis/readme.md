@@ -60,4 +60,19 @@ We can use the awk command for column 7, specifically check if there are NULL, #
         awk -F ',' '$7 == "#N/A"' $output_file | wc -l
         awk -F ',' '$7 == ""' $output_file | wc -l
 
+![data_exploration_cleaning4.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/data_exploration_cleaning4.jpg?raw=true)
 
+Columns 8 to 11 appear to have no missing or invalid values.
+
+        awk -F ',' '$8 == "NULL" || $8 == "#N/A" || $8 == ""' $output_file
+        awk -F ',' '$9 == "NULL" || $9 == "#N/A" || $9 == ""' $output_file
+        awk -F ',' '$10 == "NULL" || $10 == "#N/A" || $10 == ""' $output_file
+        awk -F ',' '$11 == "NULL" || $11 == "#N/A" || $11 == ""' $output_file
+
+![data_exploration_cleaning5.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/data_exploration_cleaning5.jpg?raw=true)
+
+5.	Check to make sure each column has the expected data type using the awk command with comma delimiter and row > 1 to ignore the 1st header row.
+
+The 1st, 2nd, 3rd columns should contain a number. No rows show non-number.
+
+        awk -F ',' 'NR > 1 && ($1 !~ /^[0-9]+$/ || $2 !~ /^[0-9]+$/ || $3 !~ /^[0-9]+$/) {print $0}' $output_file | wc -l
