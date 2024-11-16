@@ -33,5 +33,11 @@ And we’ll use the wc -l command to count the number of lines to give us how ma
 
         wc -l $output_file | head
 
+![data_exploration_cleaning1.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/data_exploration_cleaning1.jpg?raw=true)
+
+3.	Check for weird characters using grep -P with regular expression that matches any character not in the printable ASCII range including tab, carriage return, and newline. There are no characters that are not ASCII.
+
+        grep -P '[^\x20-\x7E\t\r\n]' $output_file
+   
 
         
