@@ -211,3 +211,30 @@ We'll break this down into steps using the awk command.
         awk -F ',' 'NR > 1 && $9 > 0.2 && $3 < 15000 {count++; sum+=$2} END {if (count > 0) printf "Average age: %.0f\n", sum/count; else print "No matching records"}' $output_file
 
 ![average_age_borrowing_percent_income4.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/average_age_borrowing_percent_income4.jpg?raw=true)
+
+
+**Which applicants are seeking loan approval status that have defaulted on their loan previously, looking to do debt consolidation and borrowing more than 50% of their income?**
+
+Let’s break this down into steps using the awk command.
+
+1. The *Default* column is the 10rd column. Let’s test an awk command separating the fields by ‘,’ and row number > 1 to ignore the header row and show the 1st 10 rows of applicant ID with Default = 'Y'.
+
+        awk -F ',' 'NR > 1 && $10 == "Y" {print $1}' $output_file | head
+
+![applicants_default_borrowing_percent_income_debt_cons1.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/applicants_default_borrowing_percent_income_debt_cons1.jpg?raw=true)
+
+2. The *Intent* column is the 5th column. Let’s test an awk command separating the fields by ‘,’ and row number > 1 to ignore the header row and show the 1st 10 rows of applicant ID with Intent = 'DEBTCONSOLIDATION'.
+
+        awk -F ',' 'NR > 1 && $5 = "DEBTCONSOLIDATION" {print $1}' $output_file | head
+
+![applicants_default_borrowing_percent_income_debt_cons2.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/applicants_default_borrowing_percent_income_debt_cons2.jpg?raw=true)
+
+3. The borrowing % of income is in the Percent_income column which is the 9th column. Let’s test an awk command separating the fields by ‘,’ and row number > 1 to ignore the header row and show the 1st 10 rows of applicant ID with Percent_income > 0.5.
+
+        awk -F ',' 'NR > 1 && $9 > 0.5 {print $1}' $output_file | head
+   
+![applicants_default_borrowing_percent_income_debt_cons3.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/applicants_default_borrowing_percent_income_debt_cons3.jpg?raw=true)
+
+
+   
+   
