@@ -118,7 +118,7 @@ In this section, we will ask some questions and do some analysis using Linux bas
 
 1. Let’s show the applicant ID which is the 1st column of the file using the cut with comma delimiter and first column and use the head command to show the 1st 10 rows.
 
-   cut -d ',' -f 1 Loan_prediction_mini_dataset.csv | head
+        cut -d ',' -f 1 Loan_prediction_mini_dataset.csv | head
 
 
 
