@@ -41,7 +41,7 @@ And we’ll use the wc -l command to count the number of lines to give us how ma
 
  ![data_exploration_cleaning2.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/data_exploration_cleaning2.jpg?raw=true)
 
-4. Let’s run an **awk** command on each column index using the comma delimiter and check if there are empty or ‘NULL’ or ‘#N/A’ values. We see that column 7 which represents “Rate” has missing or invalid values.
+4. Let’s run an **awk** command on each column index using the comma delimiter and check if there are empty or ‘NULL’ or ‘#N/A’ values. We see that column 7 which represents *Rate* has missing or invalid values.
    
 
         awk -F ',' '$1 == "NULL" || $1 == "#N/A" || $1 == ""' $output_file
@@ -128,7 +128,7 @@ In this section, we will ask some questions and do some analysis using Linux bas
    
 ![income_applicant_ID2.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/income_applicant_ID2.jpg?raw=true)
 
-3. Let’s combine the cut and grep command from #1 and #2 to extract row number and value of applicant ID column containing 18983. We’ll use another cut command to with colon delimiter and first column to get the line value.
+3. Let’s combine the cut and grep command from #1 and #2 to extract row number and value of applicant **Id** column containing 18983. We’ll use another cut command to with colon delimiter and first column to get the line value.
 
         cut -d ',' -f 1 $output_file | grep -n 18983 | cut -d ':' -f 1
 
@@ -137,5 +137,23 @@ In this section, we will ask some questions and do some analysis using Linux bas
 4. In this last step, we’ll store the command in #3 in the variable line_num. We’ll then use the sed -n command to print the line stored in the line_num variable and apply the cut command with comma delimiter and 3rd column. We’ll store that in the income variable and then print the value which is **$120,000**.
 
 ![income_applicant_ID4.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/income_applicant_ID4.jpg?raw=true)   
+
+
+**Which applicant ID had the highest loan rate?**
+
+Let’s break this down into steps using the awk command.
+
+1. The *Rate* column is the 7th column. Let’s test an awk command separating the fields by ‘,’ and row number > 1 to ignore the header row and show the 1st 10 rows of the Rate column.
+
+        awk -F ',' 'NR > 1 {print $7}' $output_file | head
+
+![highest_loan_rate1.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/highest_loan_rate1.jpg.jpg?raw=true)  
+
+2. We can use max variable to loop through the 7th column and track the last maximum value of Rate and show that the maximum Rate is **21.74%** and the applicant ID is **15744**.
+
+        awk -F ',' 'NR > 1 {if ($7 > max) {max = $7; id = $1}} END {print "ID:", id, "Max Loan Rate:", max "%"}' $output_file
+
+![highest_loan_rate2.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/highest_loan_rate2.jpg?raw=true)  
+
 
 
