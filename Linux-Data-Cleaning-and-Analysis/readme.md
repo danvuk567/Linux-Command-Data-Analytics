@@ -76,3 +76,29 @@ Columns 8 to 11 appear to have no missing or invalid values.
    The 1st, 2nd, 3rd columns should contain a number. No rows show non-number.
 
         awk -F ',' 'NR > 1 && ($1 !~ /^[0-9]+$/ || $2 !~ /^[0-9]+$/ || $3 !~ /^[0-9]+$/) {print $0}' $output_file | wc -l
+   
+   The 4th and 5th columns are string. No rows show non-string.
+
+        awk -F ',' 'NR > 1 && ($4 !~ /^[A-Za-z ]+$/ || $5 !~ /^[A-Za-z ]+$/) {print $0}' $output_file | wc -l
+
+   The 7th column is decimal, so we check for numbers or decimals. We expect 762 that are not because they are empty values.
+
+        awk -F ',' 'NR > 1 && $7 !~ /^[0-9]+(\.[0-9]+)?$/ {print $0}' $output_file | wc -l
+
+   The 8th column is number, so we check for numbers.
+
+        awk -F ',' 'NR > 1 && ($8 !~ /^[0-9]+$/) {print $0}' $output_file | wc -l
+
+   The 9th column is decimal, so we check for numbers or decimals.
+
+        awk -F ',' 'NR > 1 && $9 !~ /^[0-9]+(\.[0-9]+)?$/ {print $0}' $output_file | wc -l
+   
+   The 10th column is string, so we check for numbers or decimals.
+
+        awk -F ',' 'NR > 1 && ($10 !~ /^[A-Za-z ]+$/) {print $0}' $output_file | wc -l
+
+   The 11th column is number, so we check for numbers.
+
+        awk -F ',' 'NR > 1 && ($11 !~ /^[0-9]+$/) {print $0}' $output_file | wc -l
+
+![data_exploration_cleaning6.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/data_exploration_cleaning6.jpg?raw=true)   
