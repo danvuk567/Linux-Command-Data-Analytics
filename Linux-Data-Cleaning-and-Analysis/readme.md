@@ -19,4 +19,5 @@ Let’s use the sed command and remove the quotes around each field in the file.
 
         sed -i 's/"//g' $output_file
 
+![clean_file.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/clean_file.jpg?raw=true)
 
