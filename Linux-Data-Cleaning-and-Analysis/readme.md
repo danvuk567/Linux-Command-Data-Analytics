@@ -4,44 +4,44 @@
 
 Let's do some data cleaning and exploration using Linux bash commands on the data source text file in the steps outlined below. I used an Oracle cloud virtual terminal running a Linux Shell for this excercise.
 
-1. Let’s use the sed command to remove the carriage returns from the file and output to a new file that we can modify.
+1. Let’s use the **sed** command to remove the carriage returns from the file and output to a new file that we can modify.
 
         input_file="Loan_prediction_mini_dataset.csv"
         output_file= “Loan_prediction_mini_dataset_cleaned.csv”
 
         sed 's/\r//' $input_file > $output_file
 
-Let’s use the sed command and remove any leading or trailing whitespace from each line in the file.
+Let’s also use the sed command and remove any leading or trailing whitespace from each line in the file.
 
         sed -i 's/^[ \t]*//;s/[ \t]*$//g' $output_file
 
-Let’s use the sed command and remove the quotes around each field in the file.
+Let’s use the sed command again and remove the quotes around each field in the file.
 
         sed -i 's/"//g' $output_file
 
 ![clean_file.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/clean_file.jpg?raw=true)
 
-2. Let’s explore what the 1st 10 rows of data looks like using the cat and head commands on the file.
+2. Let’s explore what the 1st 10 rows of data looks like using the **cat** and **head** commands on the file.
 
         cat $output_file | head
 
-   To find the number of columns in the file, we can use head -n 1 to get the 1st row, use the tr command to replace commas by newline characters so that columns go to new lines and then use the wc -l command to count the number of lines for those columns. There are 11 columns.
+   To find the number of columns in the file, we can use head -n 1 to get the 1st row, use the tr command to replace commas by newline characters so that columns go to new lines and then use the **wc -l** command to count the number of lines for those columns. There are **11 columns**.
 
         head -n 1 $output_file | tr ',' '\n' | wc -l
 
-And we’ll use the wc -l command to count the number of lines to give us how many rows we have in the file. There are **8146** lines in the file.
+And we’ll use the wc -l command to count the number of lines to give us how many rows we have in the file. There are **8146 rows** in the file.
 
         wc -l $output_file | head
 
 ![data_exploration_cleaning1.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/data_exploration_cleaning1.jpg?raw=true)
 
-3. Check for weird characters using grep -P with regular expression that matches any character not in the printable ASCII range including tab, carriage return, and newline. There are no characters that are not ASCII.
+3. Check for weird characters using **grep -P** with regular expression that matches any character not in the printable ASCII range including tab, carriage return, and newline. There are no characters that are not ASCII.
 
         grep -P '[^\x20-\x7E\t\r\n]' $output_file
 
  ![data_exploration_cleaning2.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/data_exploration_cleaning2.jpg?raw=true)
 
-4. Let’s run an awk command on each column index using the comma delimiter and check if there are empty or ‘NULL’ or ‘#N/A’ values. We see that column 7 which represents “Rate” has missing or invalid values.
+4. Let’s run an **awk** command on each column index using the comma delimiter and check if there are empty or ‘NULL’ or ‘#N/A’ values. We see that column 7 which represents “Rate” has missing or invalid values.
    
 
         awk -F ',' '$1 == "NULL" || $1 == "#N/A" || $1 == ""' $output_file
@@ -54,7 +54,7 @@ And we’ll use the wc -l command to count the number of lines to give us how ma
 
 ![data_exploration_cleaning3.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/data_exploration_cleaning3.jpg?raw=true)
 
-We can use the awk command for column 7, specifically check if there are NULL, #N/A or empty values and count the number of lines with wc -l. There are **762** Rate values out of **8146** that are missing which should not pose a problem for any further analysis on the Rate column in Linux.
+We can use the awk command again for column 7, specifically check if there are NULL, #N/A or empty values, and count the number of lines with wc -l. There are **762** Rate values out of **8146** that are missing which should not pose a problem for any further analysis on the Rate column in Linux.
 
         awk -F ',' '$7 == "NULL"' $output_file | wc -l
         awk -F ',' '$7 == "#N/A"' $output_file | wc -l
@@ -103,7 +103,7 @@ Columns 8 to 11 appear to have no missing or invalid values.
 
 ![data_exploration_cleaning6.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/data_exploration_cleaning6.jpg?raw=true)   
 
-6. Let’s check if there are duplicates in the file using the sort and uniq command. There are none.
+6. Let’s check if there are duplicates in the file using the **sort** and **uniq -d** command. There are none.
 
         sort $output_file | uniq -d
 
@@ -116,11 +116,20 @@ In this section, we will ask some questions and do some analysis using Linux bas
 
 **What is the income of the loan applicant with ID #18983?**
 
-1. Let’s show the applicant ID which is the 1st column of the file using the cut with comma delimiter and first column and use the head command to show the 1st 10 rows.
+1. Let’s show the applicant ID which is the 1st column of the file using the **cut** command with comma delimiter and first column and use the head command to show the 1st 10 rows.
 
-        cut -d ',' -f 1 Loan_prediction_mini_dataset.csv | head
+        cut -d ',' -f 1 $output_file  | head
 
+![income_applicant_ID1.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/income_applicant_ID1.jpg?raw=true)
 
+2. Let’s use the cat command on the file and then get the row that has the value 18983 in any column using grep -n. We get one row as the 4754th row where 189823 only appears in the ID column.
 
-
+        cat  $output_file | grep -n 18983   
    
+![income_applicant_ID2.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/income_applicant_ID2.jpg?raw=true)
+
+3. Let’s combine the cut and grep command from #1 and #2 to extract row number and value of applicant ID column containing 18983. We’ll use another cut command to with colon delimiter and first column to get the line value.
+
+        cut -d ',' -f 1 $output_file | grep -n 18983 | cut -d ':' -f 1
+
+![income_applicant_ID3.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/income_applicant_ID3.jpg?raw=true)   
