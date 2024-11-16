@@ -73,6 +73,6 @@ Columns 8 to 11 appear to have no missing or invalid values.
 
 5.	Check to make sure each column has the expected data type using the awk command with comma delimiter and row > 1 to ignore the 1st header row.
 
-The 1st, 2nd, 3rd columns should contain a number. No rows show non-number.
+        The 1st, 2nd, 3rd columns should contain a number. No rows show non-number.
 
         awk -F ',' 'NR > 1 && ($1 !~ /^[0-9]+$/ || $2 !~ /^[0-9]+$/ || $3 !~ /^[0-9]+$/) {print $0}' $output_file | wc -l
