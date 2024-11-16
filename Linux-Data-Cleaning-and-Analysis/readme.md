@@ -81,7 +81,7 @@ Columns 8 to 11 appear to have no missing or invalid values.
 
         awk -F ',' 'NR > 1 && ($4 !~ /^[A-Za-z ]+$/ || $5 !~ /^[A-Za-z ]+$/) {print $0}' $output_file | wc -l
 
-   The 7th column is decimal, so we check for numbers or decimals. We expect 762 that are not because they are empty values.
+   The 7th column is decimal, so we check for numbers or decimals. We expect **762** that are not numbers or decimals because they are empty values.
 
         awk -F ',' 'NR > 1 && $7 !~ /^[0-9]+(\.[0-9]+)?$/ {print $0}' $output_file | wc -l
 
