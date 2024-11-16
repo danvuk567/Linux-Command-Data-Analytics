@@ -22,5 +22,5 @@ This is an excercise in demonstrating how you can do some basic data exploration
   
 ## **Technologies** ##
 
-- Language: Linux Bash Commands 
+- Language: Linux Bash commands 
 
