@@ -2,7 +2,7 @@
 
 ## Data Cleaning
 
-Let's do some data cleaning and exploration using Linux bash commands on the data source text file in the steps outlined below. I used an Oracle cloud virtual terminal running a Linux Shell for this excercise.
+Let's do some data cleaning and exploration using Linux bash commands on the data source text file in the steps outlined below. I used an Oracle cloud virtual terminal running a Linux Shell for this exercise.
 
 1. Let’s use the **sed** command to remove the carriage returns from the file and output to a new file that we can modify.
 
@@ -206,7 +206,7 @@ We'll break this down into steps using the awk command.
 
 ![average_age_borrowing_percent_income3.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/average_age_borrowing_percent_income3.jpg?raw=true)
 
-4. The final step is to combine the filter conditions from #1 and #2, use a count variable to count rows for filtered data, and aggregate the age column values we explored in #3 using the sum variable. If rows are returned with count > 0, the average is calculated as sum/count and we print the result by rounding to 0 using formatting of %.0f\n. The average age of those borrowing more than 20% of their income and making less than $15,000 is **26**.
+4. The final step is to combine the filter conditions from #1 and #2, use a count variable to count rows for filtered data, and aggregate the age column values we explored in #3 using the sum variable. If rows are returned with count > 0, the average is calculated as sum/count, and we print the result by rounding to 0 using formatting of %.0f\n. The average age of those borrowing more than 20% of their income and making less than $15,000 is **26**.
     
         awk -F ',' 'NR > 1 && $9 > 0.2 && $3 < 15000 {count++; sum+=$2} END {if (count > 0) printf "Average age: %.0f\n", sum/count; else print "No matching records"}' $output_file
 
