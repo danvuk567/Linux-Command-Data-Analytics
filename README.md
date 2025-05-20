@@ -18,7 +18,7 @@ This is an exercise in demonstrating how you can do some basic data exploration,
   
 ## **Data Sources Used** ##
 
-* [Kaggle Loan risk prediction dataset](https://www.kaggle.com/datasets/ganjerlawrence/loan-risk-prediction-dataset).
+* [Kaggle Loan risk prediction dataset](https://www.kaggle.com/datasets/ganjerlawrence/loan-risk-prediction-dataset)
   
 ## **Technologies** ##
 
