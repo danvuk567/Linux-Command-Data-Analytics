@@ -241,4 +241,4 @@ Let’s break this down into steps using the awk command.
 
 ![applicants_default_borrowing_percent_income_debt_cons4.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/applicants_default_borrowing_percent_income_debt_cons4.jpg?raw=true)
 
-**Back to Home page:** [Linux Command Data Analytics](https://github.com/danvuk567/Linux-Command-Data-Analytics)
+&rarr; **Back to Home page:** [Linux Command Data Analytics](https://github.com/danvuk567/Linux-Command-Data-Analytics)
