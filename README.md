@@ -20,7 +20,7 @@ This is an exercise in demonstrating how you can do some basic data exploration,
 
 * [Kaggle Loan risk prediction dataset](https://www.kaggle.com/datasets/ganjerlawrence/loan-risk-prediction-dataset)
   
-:computer: ## **Technologies** ##
+## :computer: **Technologies** ##
 
 * Language: Linux Bash commands<br/><br/>
 
