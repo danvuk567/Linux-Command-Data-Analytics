@@ -24,7 +24,9 @@ This is an exercise in demonstrating how you can do some basic data exploration,
 
 * Language: Linux Bash commands
 
-&rarr; **Back to Main page:** [Main Page](https://github.com/danvuk567)
+:arrow_right: **Back to Main page:** [Main Page](https://github.com/danvuk567)
+
+&rarr;
 
 
 
