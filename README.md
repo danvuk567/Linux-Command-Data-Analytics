@@ -6,7 +6,7 @@
 
 This is an exercise in demonstrating how you can do some basic data exploration, data cleaning and simple analytics on a text file using Linux commands. The csv source file used is the Loan risk prediction dataset found on Kaggle.
 
-## **Highlights** ##
+## :high_brightness: **Highlights** ##
 
 * The number of applicants that owned a home or had a mortgage that are borrowing for home improvement is 539 out of 8146.
 * The average age of those borrowing more than 20% of their income and making less than 15000 is 26.
