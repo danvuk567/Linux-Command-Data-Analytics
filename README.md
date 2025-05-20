@@ -14,13 +14,15 @@ This is an exercise in demonstrating how you can do some basic data exploration,
 
 ## **Table of Contents** ##
 
-- [Linux Data Cleaning and Analysis](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/Linux-Data-Cleaning-and-Analysis/readme.md)
+* [Linux Data Cleaning and Analysis](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/Linux-Data-Cleaning-and-Analysis)
   
 ## **Data Sources Used** ##
 
-- [Kaggle Loan risk prediction dataset](https://www.kaggle.com/datasets/ganjerlawrence/loan-risk-prediction-dataset).
+* [Kaggle Loan risk prediction dataset](https://www.kaggle.com/datasets/ganjerlawrence/loan-risk-prediction-dataset).
   
 ## **Technologies** ##
 
-- Language: Linux Bash commands 
+* Language: Linux Bash commands
+
+
 
