@@ -239,6 +239,6 @@ Let’s break this down into steps using the awk command.
 
         awk -F ',' 'NR > 1 && $10 == "Y" && $5 == "DEBTCONSOLIDATION" && $9 > 0.5 {print $1}' $output_file | head
 
-![applicants_default_borrowing_percent_income_debt_cons4.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/applicants_default_borrowing_percent_income_debt_cons4.jpg?raw=true)
+![applicants_default_borrowing_percent_income_debt_cons4.jpg](https://github.com/danvuk567/Linux-Command-Data-Analytics/blob/main/images/applicants_default_borrowing_percent_income_debt_cons4.jpg?raw=true)<br/><br/>
 
-&rarr; **Back to Home page:** [Linux Command Data Analytics](https://github.com/danvuk567/Linux-Command-Data-Analytics)
+:arrow_right: **Back to:** [Home page](https://github.com/danvuk567/Linux-Command-Data-Analytics)
